@@ -2,17 +2,17 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def login_view(request):
+def loginView(request):
     context = {
         'title': "Login"
     }
     return render(request, 'login.html', context)
 
-def register_view(request):
+def registerView(request):
     context = {
         'title': "Register"
     }
     return render(request, 'register.html', context)
 
-def logout_user(request):
+def logoutUser(request):
     return

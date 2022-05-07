@@ -11,13 +11,13 @@
   </head>
   <body>
     <nav>
-      <a href="#" class="nav-title">Rooms</a>
+      <a href="{% url 'home' %}" class="nav-title">Rooms</a>
       <div class="nav-items">
-        <a href="#">Missing</a>
-        <a href="#">Todo</a>
-        <a href="#">Done</a>
-        <a href="#">Login</a>
-        <a href="#">Register</a>
+        <a href="{% url 'missing' %}">Missing</a>
+        <a href="{% url 'todo' %}">Todo</a>
+        <a href="{% url 'done' %}">Done</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
       </div>
     </nav>
     {% block content %} {% endblock %}
