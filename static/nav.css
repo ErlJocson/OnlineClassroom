@@ -22,6 +22,10 @@ nav a {
   margin: 10px;
 }
 
+.nav-items a:hover {
+  color: gray;
+}
+
 .nav-title {
   margin-left: 20px;
   font-size: 20px;
