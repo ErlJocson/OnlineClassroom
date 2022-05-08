@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import UserClassification
+from .models import CustomUser
 
-admin.site.register(UserClassification)
+admin.site.register(CustomUser)
