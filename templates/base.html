@@ -11,16 +11,29 @@
     <link rel="stylesheet" href="{% static 'forms.css' %}" />
   </head>
   <body>
-    <nav>
-      <a href="{% url 'home' %}" class="nav-title">Rooms</a>
+    <nav class="top-nav">
+      <div class="title-container">
+        <div onclick="sideNavigationBar('side-nav')">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <a href="{% url 'home' %}" class="nav-title">Rooms</a>
+      </div>
       <div class="nav-items">
-        <a href="{% url 'missing' %}">Missing</a>
-        <a href="{% url 'todo' %}">Todo</a>
-        <a href="{% url 'done' %}">Done</a>
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'register' %}">Register</a>
       </div>
     </nav>
-    {% block content %} {% endblock %}
+    <nav class="side-nav" id="side-nav">
+      <div>
+        <a href="{% url 'missing' %}">Missing</a>
+        <a href="{% url 'todo' %}">Todo</a>
+        <a href="{% url 'done' %}">Done</a>
+        <a href="{% url 'create-room' %}">Create room</a>
+      </div>
+    </nav>
+    <div class="container">{% block content %} {% endblock %}</div>
+    <script src="{% static 'js/navigation.js' %}"></script>
   </body>
 </html>

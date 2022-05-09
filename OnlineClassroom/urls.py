@@ -20,4 +20,5 @@ urlpatterns = [
     path('my-admin-page/', admin.site.urls),
     path('user-auth/', include('UserAuth.urls')),
     path('', include('Room.urls')),
+    path('upload/', include('Requirement.urls'))
 ]

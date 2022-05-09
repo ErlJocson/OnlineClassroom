@@ -28,3 +28,10 @@ def doneView(request):
         'title':'Done'
     }
     return render(request, 'done.html', context)
+
+@login_required
+def createRoom(request):
+    context = {
+        'title':'Create room'
+    }
+    return render(request, 'createRoom.html', context)

@@ -6,7 +6,7 @@ import string
 def generateRandomId():
     while True:
         characters = string.ascii_letters + string.digits 
-        password = ''.join(random.choice(characters) for i in range(8))
+        password = ''.join(random.choice(characters) for i in range(10))
         if not Room.objects.filter(roomId=password):
             return password
 

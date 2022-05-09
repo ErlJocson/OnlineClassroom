@@ -10,3 +10,8 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.container {
+  width: 90%;
+  margin: auto;
+}

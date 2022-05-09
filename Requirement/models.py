@@ -10,11 +10,11 @@ class TeacherPost(models.Model):
 
 class PostComment(models.Model):
     comment = models.TextField()
-    date = models.DateTimeField(auto_now_add = True)
+    posted = models.DateTimeField(auto_now_add = True)
     commentor = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(TeacherPost, on_delete=models.CASCADE)
 
-class Works(models.Model):
+class Work(models.Model):
     studentFile = models.FileField()
     grade = models.IntegerField()
     dataSubmitted = models.DateTimeField(auto_now_add = True)
