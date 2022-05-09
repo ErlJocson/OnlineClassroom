@@ -1,1 +1,39 @@
-{% extends 'base.html' %} {% block content %} {% endblock %}
+{% extends 'base.html' %} {% block content %} {% if rooms %}
+<h1 class="room-title">Rooms</h1>
+<hr />
+<div class="card-container">
+  {% for room in rooms %}
+  <div class="card">
+    <div class="card-header">{{ room.name }}</div>
+    <div class="details">
+      <p><strong>Section:</strong> {{ room.description }}</p>
+      <span
+        ><strong>Teacher:</strong>
+        <!--  -->
+        {{ room.teacher.first_name }} {{ room.teacher.last_name}}</span
+      >
+      <a href="{% url 'room-view' roomId=room.id %}">View room</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %} {% if createdRooms %}
+<h1 class="room-title">Created rooms</h1>
+<hr />
+<div class="card-container">
+  {% for room in createdRooms %}
+  <div class="card">
+    <div class="card-header">{{ room.name }}</div>
+    <div class="details">
+      <p><strong>Section:</strong> {{ room.description }}</p>
+      <span
+        ><strong>Teacher:</strong>
+        <!--  -->
+        {{ room.teacher.first_name }} {{ room.teacher.last_name}}</span
+      >
+      <a href="{% url 'room-view' roomId=room.id %}">View room</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %} {% endblock %}

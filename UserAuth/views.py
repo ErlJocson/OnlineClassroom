@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 def loginView(request):
     if request.method == 'POST':
@@ -31,6 +32,7 @@ def registerView(request):
             password=password
         )
         user.save()
+        login(request, authenticate(request, username=username, password=password))
         return redirect('home')
 
     context = {
@@ -38,5 +40,7 @@ def registerView(request):
     }
     return render(request, 'register.html', context)
 
+@login_required
 def logoutUser(request):
-    return
+    logout(request)
+    return redirect('login')

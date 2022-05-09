@@ -12,6 +12,7 @@ def generateRandomId():
 
 class Room(models.Model):
     name = models.CharField(max_length=24)
+    description = models.CharField(max_length=24)
     roomId = models.CharField(max_length=10, default=generateRandomId)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
 

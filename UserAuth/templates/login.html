@@ -3,6 +3,7 @@
 <div class="form-container">
   <form method="post">
     {% csrf_token %}
+    <h3>Login</h3>
     <input type="text" placeholder="Username" required name="username" />
     <input type="password" placeholder="Password" required name="password" />
     <button type="submit">Login</button>

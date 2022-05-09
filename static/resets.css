@@ -14,4 +14,10 @@ body {
 .container {
   width: 90%;
   margin: auto;
+  margin-bottom: 30px;
+}
+
+.room-title {
+  text-align: center;
+  margin-top: 20px;
 }
