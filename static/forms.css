@@ -22,18 +22,6 @@
   width: 600px;
 }
 
-.form-container form select {
-  padding: 10px;
-  border: none;
-  border-bottom: 1px solid gray;
-  margin: 10px 0;
-  width: 300px;
-}
-
-.form-container form select option {
-  padding: 10px;
-}
-
 .form-container form button {
   padding: 10px 20px;
   border: 1px solid black;

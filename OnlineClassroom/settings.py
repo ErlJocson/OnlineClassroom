@@ -134,4 +134,4 @@ MEDIA_ROOTS =  os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = 'media/'
 
-AUTH_USER_MODEL = 'UserAuth.CustomUser'
+LOGIN_URL = '/user-auth/login/'
