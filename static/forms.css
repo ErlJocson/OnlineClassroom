@@ -22,7 +22,7 @@
   width: 600px;
 }
 
-.form-container form button {
+.submit-button {
   padding: 10px 20px;
   border: 1px solid black;
   background-color: white;
@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-.form-container form button:hover {
+.submit-button:hover {
   background-color: rgb(40, 40, 40);
   color: white;
 }

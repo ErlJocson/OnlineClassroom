@@ -12,9 +12,9 @@ body {
 }
 
 .container {
+  height: calc(100vh - 50px);
   width: 90%;
   margin: auto;
-  margin-bottom: 30px;
 }
 
 .room-title {

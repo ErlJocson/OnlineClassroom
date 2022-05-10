@@ -1,11 +1,12 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from .models import Room
+from .models import Room, ListOfStudent
+from Requirement.models import TeacherPost
+from django.contrib import messages
 
 @login_required
 def homeView(request):
-    # filter this rooms per current user
-    rooms = Room.objects.all()
+    rooms = ListOfStudent.objects.filter(student=request.user.id)
     createdRooms = Room.objects.filter(teacher=request.user.id)
     context = {
         'title':'Rooms',
@@ -36,6 +37,29 @@ def doneView(request):
     return render(request, 'done.html', context)
 
 @login_required
+def joinRoomView(request):
+    if request.method == 'POST':
+        roomName = request.POST['roomName']
+        roomId = request.POST['roomId']
+
+        checkIfRoomExist = Room.objects.filter(name=roomName, roomId=roomId)
+        print(checkIfRoomExist)
+        if checkIfRoomExist.first():
+            # check if student is already joined
+            newStudent = ListOfStudent.objects.create(
+                room=checkIfRoomExist,
+                student=request.user
+            )
+            newStudent.save()
+            messages.success(request, 'Joined a room')
+        else:
+            messages.warning(request, 'Room does not exist. There might be a typing error')
+    context = {
+        'title':'Join'
+    }
+    return render(request, 'joinRoomView.html', context)
+
+@login_required
 def createRoom(request):
     if request.method == 'POST':
         roomName = request.POST['roomName']
@@ -47,6 +71,7 @@ def createRoom(request):
             teacher = request.user,
         )
         roomToCreate.save()
+        messages.success(request, 'Created a room')
         return redirect('home')
 
     context = {
@@ -56,8 +81,24 @@ def createRoom(request):
 
 def roomView(request, roomId):
     roomToView = Room.objects.get(id=roomId)
+    teacherPosts = TeacherPost.objects.filter(teacher = request.user.id, room = roomToView.id)
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        date = request.POST['date']
+        toBeSubmitted = request.POST['toBeSubmitted']
+        newPost = TeacherPost.objects.create(
+            title = title, 
+            description = description, 
+            deadline = date, 
+            toBeSubmitted = toBeSubmitted,
+            teacher = request.user,
+            room = roomToView
+        )
+        newPost.save()
     context = {
-        'title':'Room view',
+        'title':roomToView.name,
         "room":roomToView,
+        'teacherPosts':teacherPosts,
     }
     return render(request, 'roomView.html', context)

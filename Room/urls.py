@@ -8,4 +8,5 @@ urlpatterns = [
     path('done/', doneView, name='done'),
     path('create-room/', createRoom, name='create-room'),
     path('view-room/<int:roomId>', roomView, name='room-view'),
+    path('join-room/', joinRoomView, name='join-room')
 ]

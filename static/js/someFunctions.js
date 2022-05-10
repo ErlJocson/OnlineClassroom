@@ -6,3 +6,8 @@ function sideNavigationBar(id) {
     navBurger.style.display = "none";
   }
 }
+
+function showAnotherDiv(id) {
+  var navBurger = document.getElementById(id);
+  navBurger.style.display = "none";
+}

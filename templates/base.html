@@ -10,23 +10,58 @@
     <link rel="stylesheet" href="{% static 'nav.css' %}" />
     <link rel="stylesheet" href="{% static 'forms.css' %}" />
     <link rel="stylesheet" href="{% static 'card.css' %}" />
+    <link rel="stylesheet" href="{% static 'classroom.css' %}" />
   </head>
+  <style>
+    .alert {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      font-weight: bold;
+      position: fixed;
+      z-index: 30;
+      width: 100%;
+      margin-top: 6px;
+      border-radius: 20px;
+    }
+
+    .alert-warning {
+      background-color: rgb(255, 97, 97);
+    }
+
+    .alert-success {
+      background-color: rgb(116, 116, 255);
+    }
+  </style>
   <body>
+    {% if messages %} {% for message in messages %}
+    <div
+      class="alert alert-{{ message.tags }}"
+      id="alert"
+      onclick="showAnotherDiv('alert')"
+    >
+      <p>{{ message }}</p>
+    </div>
+    {% endfor %} {% endif %}
     <nav class="top-nav">
       <div class="title-container">
+        {% if request.user.is_authenticated %}
         <div onclick="sideNavigationBar('side-nav')">
           <div></div>
           <div></div>
           <div></div>
         </div>
+        {% endif %}
         <a href="{% url 'home' %}" class="nav-title">Rooms</a>
       </div>
       <div class="nav-items">
         {% if not request.user.is_authenticated%}
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'register' %}">Register</a>
-        {% endif %}
+        {% else %}
         <a href="{% url 'logout' %}">Logout</a>
+        {% endif %}
       </div>
     </nav>
     <nav class="side-nav" id="side-nav">
@@ -35,6 +70,7 @@
         <a href="{% url 'todo' %}">Todo</a>
         <a href="{% url 'done' %}">Done</a>
         <a href="{% url 'create-room' %}">Create room</a>
+        <a href="{% url 'join-room' %}">Join room</a>
       </div>
     </nav>
     <div class="container">{% block content %} {% endblock %}</div>
