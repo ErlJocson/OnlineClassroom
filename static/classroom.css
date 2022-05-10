@@ -1,8 +1,24 @@
+.room-view-container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-view-container div {
+  margin: 0 10px;
+}
+
 .classroom-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
   padding: 20px;
   border-radius: 20px;
   box-shadow: var(--shadow);
+  width: 500px;
 }
 
 .classroom-header * {
@@ -10,7 +26,6 @@
 }
 
 .post-form-container {
-  margin: 10px auto;
   text-align: center;
   width: 400px;
   box-shadow: var(--shadow);

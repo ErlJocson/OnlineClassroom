@@ -6,6 +6,7 @@ class TeacherPost(models.Model):
     title = models.CharField(max_length=24)
     description = models.TextField()
     posted = models.DateTimeField(auto_now_add = True)
+    # theFile = models.FileField()
     deadline = models.DateTimeField()
     toBeSubmitted = models.BooleanField(default=False)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,28 +1,46 @@
 {% extends 'base.html' %} {% block content %}
 
-<div class="classroom-header">
-  <h1>{{ room.name }}</h1>
-  <p>
-    <strong>Teacher: </strong>{{ room.teacher.first_name }}
-    <!--  -->
-    {{ room.teacher.last_name }}
-  </p>
-  <p><strong>Section: </strong>{{ room.description }}</p>
-  <span><strong>Room ID: </strong>{{ room.roomId }}</span>
+<div class="room-view-container">
+  <div class="classroom-header">
+    <h1>{{ room.name }}</h1>
+    <p>
+      <strong>Teacher: </strong>{{ room.teacher.first_name }}
+      <!--  -->
+      {{ room.teacher.last_name }}
+    </p>
+    <p><strong>Section: </strong>{{ room.description }}</p>
+    <span><strong>Room ID: </strong>{{ room.roomId }}</span>
+  </div>
+
+  <div class="post-form-container">
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="title" placeholder="Title" />
+      <input type="text" name="description" placeholder="Description" />
+      <input type="datetime-local" name="date" />
+      <select name="toBeSubmitted" id="">
+        <option value="True" disabled selected hidden>To be submitted</option>
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+      </select>
+      <button type="submit" class="submit-button">Post</button>
+    </form>
+  </div>
 </div>
 
-<div class="post-form-container">
-  <form method="post">
-    {% csrf_token %}
-    <input type="text" name="title" placeholder="Title" />
-    <input type="text" name="description" placeholder="Description" />
-    <input type="datetime-local" name="date" />
-    <select name="toBeSubmitted" id="">
-      <option value="True">Yes</option>
-      <option value="False">No</option>
-    </select>
-    <button type="submit" class="submit-button">Post</button>
-  </form>
+<div class="post-container">
+  <h2>Announcements</h2>
+  {% for post in teacherPosts %}
+  <div class="post-contents">
+    <div class="post-header">
+      <p>{{ post.teacher.first_name }} {{ post.teacher }}</p>
+      <span>{{ post.posted }}</span>
+    </div>
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.description }}</p>
+    <div><strong>Deadline: </strong>{{ post.deadline }}</div>
+  </div>
+  {% endfor %}
 </div>
 
 {% endblock %}

@@ -86,9 +86,10 @@ def createRoom(request):
     }
     return render(request, 'createRoom.html', context)
 
+@login_required
 def roomView(request, roomId):
     roomToView = Room.objects.get(id=roomId)
-    teacherPosts = TeacherPost.objects.filter(teacher = request.user.id, room = roomToView.id)
+    teacherPosts = TeacherPost.objects.filter(room = roomId)
     if request.method == 'POST':
         title = request.POST['title']
         description = request.POST['description']
@@ -103,6 +104,7 @@ def roomView(request, roomId):
             room = roomToView
         )
         newPost.save()
+        messages.success(request, 'Post uploaded')
     context = {
         'title':roomToView.name,
         "room":roomToView,
