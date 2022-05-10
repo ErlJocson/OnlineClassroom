@@ -7,7 +7,7 @@ function sideNavigationBar(id) {
   }
 }
 
-function showAnotherDiv(id) {
+function displayNoneFunction(id) {
   var navBurger = document.getElementById(id);
   navBurger.style.display = "none";
 }

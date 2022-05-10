@@ -43,15 +43,22 @@ def joinRoomView(request):
         roomId = request.POST['roomId']
 
         checkIfRoomExist = Room.objects.filter(name=roomName, roomId=roomId)
-        print(checkIfRoomExist)
         if checkIfRoomExist.first():
-            # check if student is already joined
-            newStudent = ListOfStudent.objects.create(
-                room=checkIfRoomExist,
-                student=request.user
-            )
-            newStudent.save()
-            messages.success(request, 'Joined a room')
+            checkIfAlreadyJoined = ListOfStudent.objects.filter(
+                room = checkIfRoomExist.first().id,
+                student = request.user.id,
+            ).first()
+
+            if not checkIfAlreadyJoined:
+                newStudent = ListOfStudent.objects.create(
+                    room=checkIfRoomExist,
+                    student=request.user
+                )
+                newStudent.save()
+                messages.success(request, 'Joined a room')
+                return redirect('Home')
+            else:
+                messages.warning(request, 'You\'re already a member of this room')
         else:
             messages.warning(request, 'Room does not exist. There might be a typing error')
     context = {
