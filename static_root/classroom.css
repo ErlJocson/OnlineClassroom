@@ -1,0 +1,57 @@
+.room-view-container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-view-container div {
+  margin: 0 10px;
+}
+
+.classroom-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  width: 500px;
+}
+
+.classroom-header * {
+  margin: 6px 0;
+}
+
+.post-form-container {
+  text-align: center;
+  width: 400px;
+  box-shadow: var(--shadow);
+  border-radius: 20px;
+  padding: 20px 0;
+}
+
+.post-form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.post-form-container form input {
+  padding: 10px;
+  width: 300px;
+  margin: 6px 0;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.post-form-container form select {
+  padding: 10px;
+  width: 300px;
+  margin: 6px 0;
+  border: none;
+  border-bottom: 1px solid gray;
+}
