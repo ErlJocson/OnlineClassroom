@@ -32,3 +32,11 @@
   border: none;
   border-bottom: 1px solid gray;
 }
+
+.post-form-container form select {
+  padding: 10px;
+  width: 300px;
+  margin: 6px 0;
+  border: none;
+  border-bottom: 1px solid gray;
+}
