@@ -6,7 +6,7 @@ class TeacherPost(models.Model):
     title = models.CharField(max_length=24)
     description = models.TextField()
     posted = models.DateTimeField(auto_now_add = True)
-    # theFile = models.FileField()
+    theFile = models.FileField(upload_to='teacher-files/' ,blank=True)
     deadline = models.DateTimeField()
     toBeSubmitted = models.BooleanField(default=False)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -19,8 +19,9 @@ class PostComment(models.Model):
     post = models.ForeignKey(TeacherPost, on_delete=models.CASCADE)
 
 class Work(models.Model):
-    studentFile = models.FileField(blank=True)
+    studentFile = models.FileField(upload_to='student-files/', blank=True)
     grade = models.IntegerField(blank=True)
     dataSubmitted = models.DateTimeField(auto_now_add = True)
     teacher = models.ForeignKey(TeacherPost, on_delete=models.CASCADE)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
+    graded = models.BooleanField(default=False)
